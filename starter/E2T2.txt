@@ -1,3 +1,18 @@
 Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
 
+1. The IAM policy grants overly broad access to resources, deviating from the principle of least privilege by providing full access.
+2. The load balancer lacks configuration for redirecting non-SSL (HTTP) requests to SSL (HTTPS).
+3. The application running on port 5000 is exposed and easily accessible directly from the public internet.
+4. S3 buckets lack server-side encryption and logging is not enabled.
+5. The IAM password policy is non-compliant regarding the minimum length for the Root account.
+6. AWS Systems Manager should be utilized for the management of the EC2 instance.
+
 Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+# Configure IAM policy for read-only access.
+# Implement Multi-Factor Authentication (MFA) for root access.
+# Enforce a more stringent IAM password policy.
+# Restrict traffic on the Load Balancer to enhance security.
+# Deactivate unnecessary port access to the EC2 instance.
+# Enable logging for S3 buckets to enhance audit capabilities.
+# Allow traffic only from specified security groups for improved access control.

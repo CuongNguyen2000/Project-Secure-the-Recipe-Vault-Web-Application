@@ -1,5 +1,11 @@
 Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
 
 # Poor practice 1
+None of the S3 buckets—free-recipes, secret-recipes, and vpc-flow-logs—currently employ server-side encryption, and block public access is turned off for all of them. The files within these buckets were uploaded without encryption, posing a potential risk of unauthorized access to their contents. Without encryption, there is a heightened vulnerability, allowing unauthorized individuals to easily view and access the contents.
+
+It's essential to note that VPC Flow Logs, designed to capture information about IP traffic in and out of network interfaces within a VPC, is a crucial feature. Failure to enable encryption in this context can compromise the overall security of the AWS infrastructure, particularly if other components of the infrastructure are not appropriately configured.
 
 # Poor practice 2
+The Access Control List (ACL) rules for both the public and private subnet networks currently permit all traffic on all ports from any source.
+
+To enhance security, it is recommended to employ Network ACL rules that restrict network connectivity, effectively controlling the traffic entering and leaving the subnet. This proactive measure aims to mitigate potential malicious attacks on the AWS infrastructure, ensuring that the private subnet and its contents remain exclusively for private use.
